@@ -31,7 +31,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
             <Label text="Description (Optional):" />
-            <TextArea fx:id="projectDescTextArea" prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="projectDescrTextArea" prefHeight="200.0" prefWidth="200.0" />
          </children>
          <padding>
             <Insets left="10.0" />

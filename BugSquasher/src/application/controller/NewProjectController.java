@@ -1,7 +1,10 @@
 package application.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
+import application.dao.ProjectDAO;
+import content.bean.ProjectBean;
 import javafx.fxml.FXML;
 import javafx.stage.Stage;
 import javafx.scene.control.Button;
@@ -16,7 +19,7 @@ public class NewProjectController {
 	@FXML private Button cancelButton;
 	@FXML private Button saveButton;
 	@FXML private TextField projectNameTextField;
-	@FXML private TextArea projectDescTextArea;
+	@FXML private TextArea projectDescrTextArea;
 	@FXML private DatePicker projectDatePicker;
 	
 	/*
@@ -44,6 +47,21 @@ public class NewProjectController {
 	 */
 	@FXML 
 	private void saveButtonAction() {
-
+		// Get the name from nameTextField
+		String name = projectNameTextField.getText();
+		
+		// Get the date from datePicker
+		LocalDate localDate = projectDatePicker.getValue();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+		String date = localDate.format(formatter);
+		
+		// Get the description from the textArea
+		String descr = projectDescrTextArea.getText();
+		
+		// Package data into a ProjectBean
+		ProjectBean projectBean = new ProjectBean(name, date, descr);
+		
+		// Pass projectBean to DAO
+		ProjectDAO dao = new ProjectDAO(projectBean);
 	}
 }
