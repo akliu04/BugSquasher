@@ -3,7 +3,7 @@ package application.dao;
 import java.util.ArrayList;
 
 import content.bean.ProjectBean;
-import database.ProjectFileIO;
+import databaseAccessLayer.ProjectFileIO;
 
 public class ProjectDAO implements ProjectDAOInt{
 	
