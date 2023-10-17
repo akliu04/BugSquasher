@@ -15,12 +15,9 @@
       </ToolBar>
    </top>
    <left>
-      <ScrollPane fx:id="projectScrollPane" hbarPolicy="NEVER" maxWidth="220.0" BorderPane.alignment="CENTER">
+      <ScrollPane fx:id="projectScrollPane" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="240.0" style="-fx-background-color: GREY;" BorderPane.alignment="CENTER">
          <content>
-            <VBox fx:id="projectVBox" spacing="5.0">
-               <padding>
-                  <Insets right="20.0" />
-               </padding></VBox>
+            <VBox fx:id="projectVBox" spacing="5.0" style="-fx-background-color: ALICEBLUE;" />
          </content>
       </ScrollPane>
    </left>

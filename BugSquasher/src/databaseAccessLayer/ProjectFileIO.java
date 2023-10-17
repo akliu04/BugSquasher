@@ -16,13 +16,18 @@ public class ProjectFileIO {
 	private BufferedReader reader;
 	private static int size;
 	
+	// character used to separate fields
+	private String separator = "|";
+	
 	public ProjectFileIO() {
+		// Create a BufferedWriter that writes to the database
 		try {
 			writer = new BufferedWriter(new FileWriter("./database/ProjectFile.txt", true));
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 		
+		// Create a BufferedReader that reads from the database
 		try {
 			reader = new BufferedReader(new FileReader("./database/ProjectFile.txt"));
 		} catch (FileNotFoundException e) {
@@ -36,11 +41,14 @@ public class ProjectFileIO {
 	 * @param data	ArrayList of data to be stored, formatted: name, date, descr
 	 */
 	public void storeProject(ArrayList<String> data) {
+		// Build the string to write
 		String entry = "";
-		for (String field : data) {
-			entry += field + ",";
+		for (int i = 0; i < 2; i++) {
+			entry += data.get(i) + separator;
 		}
-		entry = entry.substring(0,entry.length()-1);
+		entry += data.get(2);
+
+		// Write to the text file
 		try {
 			writer.append(entry);
 			writer.append("\n");
@@ -48,6 +56,7 @@ public class ProjectFileIO {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		// Increment size
 		size++;
 	}
 	
@@ -62,8 +71,15 @@ public class ProjectFileIO {
 		try {
 			line = reader.readLine();
 			while (line != null) {
-				List<String> items = Arrays.asList(line.split(","));
-				container.add(new ArrayList<String> (items));
+				List<String> items = Arrays.asList(line.split("\\|"));
+				ArrayList<String> output = new ArrayList<>(items);
+ 				
+				// If descr field is empty, add an empty string to represent it
+				if (output.size() < 3) {
+					output.add("");
+				}
+				
+				container.add(output);
 				line = reader.readLine();
 			}
 		} catch (IOException e) {
